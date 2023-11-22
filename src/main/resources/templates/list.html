@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Farmacos</title>
+</head>
+<body>
+<h2>Farmacos</h2>
+<div>
+  <a th:href="@{/api/farmacos/criar}">Criar Farmaco</a>
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Cruzamentos</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="farmaco : ${farmacos}">
+      <td th:number="${farmaco.getId()}"></td>
+      <td th:text="${farmaco.getNomeDaSubstancia()}"></td>
+      <td>
+        <a th:href="@{/api/farmacos/editar/{id}(id=${farmaco.id})}">Editar</a>
+        <a th:href="@{/api/farmacos/deletar/{id}(id=${farmaco.id})}">Deletar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+
+
+</html>
