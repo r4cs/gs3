@@ -7,50 +7,23 @@
 <body>
 <h2>Formulário de inclusão de Farmaco</h2>
 <form th:action="@{/api/farmacos}" th:object="${farmacos}" method="post">
-  <input type="hidden" th:field="*{id}">
+  <input type="hidden" th:field="*{farmacoId}">
   <div>
     <label for="nomeDaSubstancia">Nome</label>
-    <input type="text" id="nomeDaSubstancia" name="nomeDaSubstancia" th:field="*{nomeDaSubstancia}">
+    <input type="text" id="nomeDaSubstancia" th:field="*{nomeDaSubstancia}">
   </div>
 
-
-<!--  <div>-->
-<!--    <label for="cruzamentos">Cruzamentos</label>-->
-<!--    <textarea type="text" id="cruzamentos" th:field="*{cruzamentos}"></textarea>-->
-<!--  </div>-->
-
-
-<!--  <div>-->
-<!--    <label for="cruzamentos">Cruzamentos</label>-->
-<!--    <select name="cruzamentos" id="cruzamentos" th:field="*{cruzamentos}">-->
-<!--      <option th:each="entry : ${farmacos.getCruzamentos()}" th:value="${entry.key}" th:text="${entry.value}"></option>-->
-<!--    </select>-->
-<!--  </div>-->
-
-
-  <div>
-    <label for="cruzamentos">Cruzamentos</label>
-    <select name="cruzamentos" id="cruzamentos" th:field="*{cruzamentos}">
+  <!-- Dropdowns for existing farmacos -->
+  <div th:each="existingFarmaco : ${farmacos}">
+    <label for="nomeDaSubstancia"
+           th:text="${existingFarmaco.nomeDaSubstancia}"></label>
+    <select th:field="*{cruzamentos[__${existingFarmaco.farmaco_id()}__]}">
       <option th:each="classificacao : ${T(br.com.vaidaruim.gs3.core.entity.Classificacao).values()}"
               th:value="${classificacao}"
               th:text="${classificacao}">
       </option>
     </select>
   </div>
-
-<!--  <div th:each="existingFarmaco : ${farmacos}">-->
-<!--    <div>-->
-<!--      <label th:for="${'cruzamentos_' + existingFarmaco.id}"> Cruzamentos com ${existingFarmaco.nomeDaSubstancia}</label>-->
-<!--      <select name="cruzamentos" th:field="${'farmacos.cruzamentos[' + existingFarmaco.id + ']'}">-->
-<!--        <option th:each="classificacao : ${T(br.com.vaidaruim.gs3.core.entity.Classificacao).values()}"-->
-<!--                th:value="${classificacao}"-->
-<!--                th:text="${classificacao}">-->
-<!--        </option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
 
   <div>
     <button type="submit">Enviar</button>

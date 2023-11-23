@@ -3,59 +3,57 @@ package br.com.vaidaruim.gs3.apiController;
 import br.com.vaidaruim.gs3.core.entity.DTO.FarmacoDTO;
 import br.com.vaidaruim.gs3.core.entity.Farmaco;
 import br.com.vaidaruim.gs3.core.service.FarmacoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
 @RequestMapping(path = "/api/farmacos")
 public class FarmacoController {
 
+    private final FarmacoService service;
 
     @Autowired
-    public final FarmacoService service;
-
     public FarmacoController(FarmacoService service) {
         this.service = service;
     }
 
-    @GetMapping
-    public String listFarmacos(Model model) {
-        model.addAttribute("farmacos", service.lerTodosFarmacos());
-        return "list"; //path da pasta templates
-    }
-
-    @GetMapping("/criar")
-    public String showCreateForm(Model model) {
-        model.addAttribute("farmacos", new Farmaco());
-        return "form";
-    }
-
     @PostMapping
-    public String cadastrarFarmaco(@ModelAttribute FarmacoDTO dto) {
-        service.cadastrarFarmaco(dto);
-        return "redirect:/api/farmacos";
-//        return "redirect:farmacos";
+    public ResponseEntity<FarmacoDTO> cadastrarFarmaco(@Valid @RequestBody FarmacoDTO dto) {
+        return ResponseEntity.ok(service.cadastrarFarmaco(dto));
     }
 
-    @GetMapping("/editar/{id}")
-    public String mostrarFormEdicao(@PathVariable Long id, Model model) {
-        Farmaco farmaco = service.lerFarmacoPorId(id).orElseThrow(() -> new IllegalArgumentException("Farmaco não encotrado Id: " + id));
-        model.addAttribute("farmacos", farmaco);
-        return "form";
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Farmaco>> lerFarmacoPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.lerFarmacoPorId(id));
     }
 
-    @GetMapping("/atualizar/{id}")
-    public String atualizarFarmaco(@PathVariable Long id, @ModelAttribute FarmacoDTO dto) {
-        service.cadastrarFarmaco(dto);
-        return "form";
+//    @GetMapping
+//    public ResponseEntity<List<Farmaco>> listarFarmacos(Pageable pageRequest) {
+//        return ResponseEntity.ok(service.lerTodosFarmacos(pageRequest));
+//    }
+
+    @GetMapping
+    public ResponseEntity<Page<Farmaco>> listarFarmacos(Pageable pageable) {
+        Page<Farmaco> farmacos = service.lerTodosFarmacos(pageable);
+        return ResponseEntity.ok(farmacos);
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarFarmaco(@PathVariable Long id) {
-        service.deletarFarmaco(id);
-        return "redirect:/farmacos";
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<FarmacoDTO> atualizarFarmaco(@Valid @PathVariable Long id,
+                                                       @RequestBody FarmacoDTO dto) {
+        return ResponseEntity.ok(service.atualizarFarmaco(id, dto));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarFarmaco(@PathVariable Long id) {
+        return ResponseEntity.ok(service.deletarFarmaco(id));
+    }
 }

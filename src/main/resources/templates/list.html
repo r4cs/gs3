@@ -12,17 +12,19 @@
   <table>
     <thead>
     <tr>
+      <th>Id</th>
       <th>Nome</th>
       <th>Cruzamentos</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="farmaco : ${farmacos}">
-      <td th:number="${farmaco.getId()}"></td>
+      <td th:number="${farmaco.getFarmacoId()}"></td>
       <td th:text="${farmaco.getNomeDaSubstancia()}"></td>
+      <td th:text="${farmaco.getCruzamentos()}"></td>
       <td>
-        <a th:href="@{/api/farmacos/editar/{id}(id=${farmaco.id})}">Editar</a>
-        <a th:href="@{/api/farmacos/deletar/{id}(id=${farmaco.id})}">Deletar</a>
+        <a th:href="@{/api/farmacos/editar/{id}(id=${farmaco.getFarmacoId()})}">Editar</a>
+        <a th:href="@{/api/farmacos/deletar/{id}(id=${farmaco.getNomeDaSubstancia()})}">Deletar</a>
       </td>
     </tr>
     </tbody>

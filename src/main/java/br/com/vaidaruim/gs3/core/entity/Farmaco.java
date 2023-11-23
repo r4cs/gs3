@@ -11,32 +11,28 @@ public class Farmaco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long farmaco_id;
 
     private String nomeDaSubstancia;
 
     @ElementCollection
-    @CollectionTable
-    @MapKeyColumn//(name = "id")
+    @CollectionTable(name = "farmaco_cruzamentos", joinColumns = @JoinColumn(name="farmaco_id"))
+//    @MapKeyColumn(name = "cruzamentos")
     @Enumerated(EnumType.STRING)
     private Map<String, Classificacao> cruzamentos = new HashMap<>();
 
-
-    public Farmaco() {
-    }
+    public Farmaco() {}
 
     public Farmaco(FarmacoDTO dto) {
+        this.farmaco_id = dto.id();
         this.nomeDaSubstancia = dto.nomeDaSubstancia();
         this.cruzamentos = dto.cruzamentos();
     }
 
-    public Long getId() {
-        return id;
+    public Long getFarmacoId() {
+        return farmaco_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNomeDaSubstancia() {
         return nomeDaSubstancia;
@@ -57,7 +53,7 @@ public class Farmaco {
     @Override
     public String toString() {
         return "Farmaco{" +
-                "\nid=" + id +
+                "\nid=" + farmaco_id +
                 "\nnome da substância='" + nomeDaSubstancia + '\'' +
                 "\ncruzamentos=" + cruzamentos +
                 "\n}";

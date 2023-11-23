@@ -1,9 +1,6 @@
 package br.com.vaidaruim.gs3.core.entity;
 
 public enum Classificacao {
-
-    // * vermelho (risco de saude alto), caveira(risco de overdose)
-
     AZUL("azul", "mesma substância"),
     VERDE("verde", "seguro de se usar"),
     AMARELO("amarelo", "risco de saúde: médio"),
@@ -25,5 +22,4 @@ public enum Classificacao {
     public String getClassificacao() {
         return classificacao;
     }
-
 }
