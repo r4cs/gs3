@@ -2,6 +2,8 @@ package br.com.vaidaruim.gs3.core.entity;
 
 import br.com.vaidaruim.gs3.core.entity.DTO.FarmacoDTO;
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 import java.util.HashMap;
 import java.util.Map;
