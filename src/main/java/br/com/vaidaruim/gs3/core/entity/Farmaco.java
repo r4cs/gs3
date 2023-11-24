@@ -17,7 +17,6 @@ public class Farmaco {
 
     @ElementCollection
     @CollectionTable(name = "farmaco_cruzamentos", joinColumns = @JoinColumn(name="farmaco_id"))
-//    @MapKeyColumn(name = "cruzamentos")
     @Enumerated(EnumType.STRING)
     private Map<String, Classificacao> cruzamentos = new HashMap<>();
 

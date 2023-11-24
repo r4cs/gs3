@@ -1,18 +1,17 @@
 package br.com.vaidaruim.gs3.core.service;
 
-import br.com.vaidaruim.gs3.core.entity.DTO.FarmacoDTO;
 import br.com.vaidaruim.gs3.core.entity.Farmaco;
+import br.com.vaidaruim.gs3.core.entity.DTO.FarmacoDTO;
 import br.com.vaidaruim.gs3.core.repository.FarmacoRepo;
 import br.com.vaidaruim.gs3.core.service.mapper.FarmacoMapper;
-import jakarta.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import jakarta.transaction.Transactional;
+
 import java.util.Optional;
 
 @Service
@@ -38,15 +37,10 @@ public class FarmacoService {
         return farmacoRepo.findById(id);
     }
 
-//    public List<Farmaco> lerTodosFarmacos(Pageable pageable) {
-//        Pageable pageableConfigurado = PageRequest.of(0, 10, Sort.by("farmaco_id").ascending());
-//        return farmacoRepo.findAll(pageableConfigurado).getContent();
-//    }
 
     public Page<Farmaco> lerTodosFarmacos(Pageable pageable) {
         return farmacoRepo.findAll(pageable);
     }
-
 
 
     @Transactional
@@ -67,5 +61,9 @@ public class FarmacoService {
     public String deletarFarmaco(Long id) {
         farmacoRepo.deleteById(id);
         return "Fármaco deletado";
+    }
+
+    public Optional<Farmaco>  lerFarmacoPorNomeDaSubstancia(String nomeDaSubstancia) {
+        return farmacoRepo.findFarmacoByNomeDaSubstancia(nomeDaSubstancia);
     }
 }

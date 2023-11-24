@@ -6,11 +6,12 @@ import br.com.vaidaruim.gs3.core.service.FarmacoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -34,17 +35,22 @@ public class FarmacoController {
         return ResponseEntity.ok(service.lerFarmacoPorId(id));
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<Farmaco>> listarFarmacos(Pageable pageRequest) {
-//        return ResponseEntity.ok(service.lerTodosFarmacos(pageRequest));
-//    }
+    @GetMapping("nome-da-substancia/{nomeDaSubstancia}")
+    public ResponseEntity<Optional<Farmaco>> lerFarmacoPorNomeDaSubstancia(@PathVariable String nomeDaSubstancia) {
+        return ResponseEntity.ok(service.lerFarmacoPorNomeDaSubstancia(nomeDaSubstancia));
+    }
+
 
     @GetMapping
     public ResponseEntity<Page<Farmaco>> listarFarmacos(Pageable pageable) {
-        Page<Farmaco> farmacos = service.lerTodosFarmacos(pageable);
+        Pageable defaultPageable = PageRequest.of(
+                                    pageable.getPageNumber(),
+                                    5,
+                                    Sort.by("nomeDaSubstancia"));
+
+        Page<Farmaco> farmacos = service.lerTodosFarmacos(defaultPageable);
         return ResponseEntity.ok(farmacos);
     }
-
 
     @PatchMapping("/{id}")
     public ResponseEntity<FarmacoDTO> atualizarFarmaco(@Valid @PathVariable Long id,
