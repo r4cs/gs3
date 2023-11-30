@@ -13,8 +13,7 @@ import org.springframework.data.domain.Pageable;
 
 import jakarta.transaction.Transactional;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class FarmacoService {
@@ -30,9 +29,18 @@ public class FarmacoService {
 
     @Transactional
     public FarmacoDTO cadastrarFarmaco(FarmacoDTO dto) {
-        Farmaco farmaco = new Farmaco(dto);
+        Farmaco farmaco = new Farmaco();
+        farmaco.setNomeDaSubstancia(dto.nomeDaSubstancia().toUpperCase());
+
+        Map<String, Classificacao> cruzamentosEmCaixaAlta = new HashMap<>();
+        dto.cruzamentos().forEach((key, value) -> {
+            cruzamentosEmCaixaAlta.put(key.toUpperCase(), value);
+        });
+
+        farmaco.setCruzamentos(cruzamentosEmCaixaAlta);
+
         farmacoRepo.save(farmaco);
-        atualizarCruzamentos(farmaco.getFarmacoId(), farmaco.getCruzamentos());
+//        atualizarCruzamentos(farmaco.getFarmacoId(), farmaco.getCruzamentos());
         return mapper.toDTO(farmaco);
     }
 
@@ -61,51 +69,49 @@ public class FarmacoService {
         return mapper.toDTO(farmacoAntigo);
     }
 
-    @Transactional
-    public FarmacoDTO atualizarCruzamentos(Long farmacoId, Map<String, Classificacao> novosCruzamentos) {
-        Farmaco farmacoPrincipal = farmacoRepo.findById(farmacoId)
-                .orElseThrow(() -> new IllegalArgumentException("Farmaco não encontrado Id: " + farmacoId));
-
-        if (novosCruzamentos != null && !novosCruzamentos.isEmpty()) {
-            for (Map.Entry<String, Classificacao> entry : novosCruzamentos.entrySet()) {
-                System.out.println("\nnovo cruzamento: " + novosCruzamentos.entrySet() + "\nentry:" + entry);
-                String nomeCruzamento = entry.getKey();
-                System.out.println("nomeCruzamento: " + nomeCruzamento);
-                Classificacao classificacao = entry.getValue();
-                System.out.println("classificaçao: " + classificacao);
-
-                // Valida se o cruzamento já existe no fármaco principal
-                if (!farmacoPrincipal.getCruzamentos().containsKey(nomeCruzamento)) {
-                    // Se não existe, adiciona o cruzamento ao fármaco principal
-                    farmacoPrincipal.getCruzamentos().put(nomeCruzamento, classificacao);
-                }
-
-                // Valida se o fármaco cruzado existe
-                Farmaco farmacoCruzado = farmacoRepo.findFarmacoByNomeDaSubstancia(nomeCruzamento)
-                        .orElseGet(() -> {
-                            // Se não existe, cria um novo fármaco cruzado
-                            Farmaco novoFarmacoCruzado = new Farmaco();
-                            novoFarmacoCruzado.setNomeDaSubstancia(nomeCruzamento);
-                            novoFarmacoCruzado.getCruzamentos().put(farmacoPrincipal.getNomeDaSubstancia(), classificacao);
-                            farmacoRepo.save(novoFarmacoCruzado);
-                            return novoFarmacoCruzado;
-                        });
-                System.out.println("farmacoCruzado: " + farmacoCruzado);
-
-                // Verifica se o cruzamento no fármaco cruzado está alinhado
-                if (!farmacoCruzado.getCruzamentos().containsKey(farmacoPrincipal.getNomeDaSubstancia())
-                        || farmacoCruzado.getCruzamentos().get(farmacoPrincipal.getNomeDaSubstancia()) != classificacao) {
-                    // Se não está alinhado, atualiza o cruzamento no fármaco cruzado
-                    farmacoCruzado.getCruzamentos().put(farmacoPrincipal.getNomeDaSubstancia(), classificacao);
-                    farmacoRepo.save(farmacoCruzado);
-                }
-            }
-        }
-
-        farmacoRepo.save(farmacoPrincipal);
-        return mapper.toDTO(farmacoPrincipal);
-    }
-
+//    @Transactional
+//    public FarmacoDTO atualizarCruzamentos(Long farmacoId, Map<String, Classificacao> novosCruzamentos) {
+//        System.out.println("Novos cruzamentos: " + novosCruzamentos.keySet());
+//
+//        Farmaco farmacoPrincipal = farmacoRepo.findById(farmacoId)
+//                .orElseThrow(() -> new IllegalArgumentException("Farmaco não encontrado Id: " + farmacoId));
+//
+//        System.out.println("Farmaco principal: " + farmacoPrincipal);
+//
+//        if (novosCruzamentos != null && !novosCruzamentos.isEmpty()) {
+//            for (Map.Entry<String, Classificacao> entry : novosCruzamentos.entrySet()) {
+//                String farmacoCruzadoNome = entry.getKey();
+//                Classificacao classificacao = entry.getValue();
+//                System.out.println("\nNovo cruzamento: " + entry.getKey() + " value: " + entry.getValue());
+//
+//                // gera um erro bem aqui, quando faz a segunda entrada e encontra o fármaco com ele mesmo:
+//                // "status": 500,
+//                //    "error": "Erro interno no servidor",
+//                //    "message": "query did not return a unique result: 2"
+//                Optional<Farmaco> optionalFarmacoCruzado = farmacoRepo.findFarmacoByNomeDaSubstancia(farmacoCruzadoNome);
+//
+//                if (optionalFarmacoCruzado.isPresent()) {
+//                    Farmaco farmacoCruzado = optionalFarmacoCruzado.get();
+//
+//                    if (!farmacoCruzado.getCruzamentos().containsKey(farmacoPrincipal.getNomeDaSubstancia())) {
+//                        farmacoCruzado.getCruzamentos().put(farmacoPrincipal.getNomeDaSubstancia(), classificacao);
+//                        atualizarFarmaco(farmacoCruzado.getFarmacoId(), mapper.toDTO(farmacoCruzado));
+//                    } else {
+//                        System.out.println("Cruzamento já existe para " + farmacoCruzadoNome + " com " + farmacoPrincipal.getNomeDaSubstancia() + ". Pulando para próxima chave.");
+//                    }
+//                } else {
+//                    Farmaco novoFarmacoCruzado = new Farmaco();
+//                    novoFarmacoCruzado.setNomeDaSubstancia(farmacoCruzadoNome);
+//                    novoFarmacoCruzado.getCruzamentos().put(farmacoPrincipal.getNomeDaSubstancia(), classificacao);
+//                    farmacoRepo.save(novoFarmacoCruzado);
+//                    atualizarFarmaco(novoFarmacoCruzado.getFarmacoId(), mapper.toDTO(novoFarmacoCruzado));
+//                }
+//            }
+//        }
+//        // Atualiza o fármaco principal
+//        farmacoRepo.save(farmacoPrincipal);
+//        return mapper.toDTO(farmacoPrincipal);
+//    }
 
     public String deletarFarmaco(Long id) {
         farmacoRepo.deleteById(id);

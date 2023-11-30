@@ -1,0 +1,192 @@
+{
+   "nomeDaSubstancia":"Maconha",
+   "cruzamentos":{
+      "MACONHA":"AZUL",
+      "LSD":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"VERDE",
+      "MDMA":"VERDE",
+      "KETAMINA":"VERDE",
+      "ÁLCOOL":"VERDE",
+      "GHB":"VERDE",
+      "COCAÍNA":"VERDE",
+      "POPPERS":"VERDE",
+      "VIAGRA":"VERDE"
+   }
+}
+
+{
+   "nomeDaSubstancia":"LSD",
+   "cruzamentos":{
+      "LSD":"AZUL",
+      "MACONHA":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"VERDE",
+      "MDMA":"VERDE",
+      "KETAMINA":"VERDE",
+      "ÁLCOOL":"VERDE",
+      "GHB":"VERDE",
+      "COCAÍNA":"AMARELO",
+      "POPPERS":"AMARELO",
+      "VIAGRA":"AMARELO"
+   }
+}
+
+{
+   "nomeDaSubstancia":"COGUMELO",
+   "cruzamentos":{
+      "COGUMELO":"VERDE",
+      "MACONHA":"VERDE",
+      "CAFEINA":"AMARELO",
+      "MDMA":"VERDE",
+      "KETAMINA":"VERDE",
+      "ÁLCOOL":"VERDE",
+      "GHB":"VERDE",
+      "COCAÍNA":"AMARELO",
+      "POPPERS":"VERMELHO",
+      "VIAGRA":"VERMELHO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"CAFÉINA",
+   "cruzamentos":{
+      "CAFÉINA":"AZUL",
+      "MACONHA":"VERDE",
+      "LSD":"VERDE",
+      "COGUMELO":"AMARELO",
+      "MDMA":"AMARELO",
+      "KETAMINA":"AMARELO",
+      "ÁLCOOL":"AMARELO",
+      "COCAÍNA":"AMARELO",
+      "POPPERS":"AMARELO",
+      "VIAGRA":"AMARELO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"MDMA",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"AZUL",
+      "KETAMINA":"AMARELO",
+      "ÁLCOOL":"VERMELHO",
+      "GHB":"AMARELO",
+      "COCAÍNA":"VERMELHO",
+      "POPPERS":"VERMELHO",
+      "VIAGRA":"AMARELO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"KETAMINA",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"AMARELO",
+      "KETAMINA":"AZUL",
+      "ÁLCOOL":"PRETO",
+      "GHB":"PRETO",
+      "COCAÍNA":"VERMELHO",
+      "POPPERS":"VERDE",
+      "VIAGRA":"VERDE"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"ÁLCOOL",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"VERMELHO",
+      "KETAMINA":"PRETO",
+      "ÁLCOOL":"AZUL",
+      "GHB":"PRETO",
+      "COCAÍNA":"VERMELHO",
+      "POPPERS":"VERMELHO",
+      "VIAGRA":"VERMELHO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"GHB",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"VERDE",
+      "COGUMELO":"VERDE",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"AMARELO",
+      "KETAMINA":"PRETO",
+      "ÁLCOOL":"PRETO",
+      "GHB":"AZUL",
+      "COCAÍNA":"VERMELHO",
+      "POPPERS":"VERMELHO",
+      "VIAGRA":"VERMELHO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"COCAÍNA",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"AMARELO",
+      "COGUMELO":"AMARELO",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"VERMELHO",
+      "KETAMINA":"VERMELHO",
+      "ÁLCOOL":"VERMELHO",
+      "GHB":"VERMELHO",
+      "COCAÍNA":"AZUL",
+      "POPPERS":"PRETO",
+      "VIAGRA":"PRETO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"POPPERS",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"AMARELO",
+      "COGUMELO":"VERMELHO",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"VERMELHO",
+      "KETAMINA":"VERDE",
+      "ÁLCOOL":"VERMELHO",
+      "GHB":"VERMELHO",
+      "COCAÍNA":"PRETO",
+      "POPPERS":"AZUL",
+      "VIAGRA":"PRETO"
+   }
+}
+
+
+{
+   "nomeDaSubstancia":"VIAGRA",
+   "cruzamentos":{
+      "MACONHA":"VERDE",
+      "LSD":"AMARELO",
+      "COGUMELO":"VERMELHO",
+      "CAFÉINA":"AMARELO",
+      "MDMA":"AMARELO",
+      "KETAMINA":"VERDE",
+      "ÁLCOOL":"VERMELHO",
+      "GHB":"VERMELHO",
+      "COCAÍNA":"PRETO",
+      "POPPERS":"PRETO",
+      "VIAGRA":"AZUL"
+   }
+}

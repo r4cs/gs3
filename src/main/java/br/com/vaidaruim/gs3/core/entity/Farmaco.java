@@ -19,6 +19,7 @@ public class Farmaco {
 
     @ElementCollection
     @CollectionTable(name = "farmaco_cruzamentos", joinColumns = @JoinColumn(name="farmaco_id"))
+    @MapKeyColumn(name = "cruzamentos_key")
     @Enumerated(EnumType.STRING)
     private Map<String, Classificacao> cruzamentos = new HashMap<>();
 
@@ -36,7 +37,7 @@ public class Farmaco {
 
 
     public String getNomeDaSubstancia() {
-        return nomeDaSubstancia;
+        return nomeDaSubstancia.toUpperCase();
     }
 
     public void setNomeDaSubstancia(String name) {
@@ -50,6 +51,7 @@ public class Farmaco {
     public void setCruzamentos(Map<String, Classificacao> cruzamentos) {
         this.cruzamentos = cruzamentos;
     }
+
 
     @Override
     public String toString() {

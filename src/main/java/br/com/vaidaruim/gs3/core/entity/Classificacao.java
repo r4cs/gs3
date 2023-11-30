@@ -5,7 +5,7 @@ public enum Classificacao {
     VERDE("verde", "seguro de se usar"),
     AMARELO("amarelo", "risco de saúde: médio"),
     VERMELHO("vermelho", "risco de saúde: alto"),
-    CAVEIRA("caveira", "risco de overdose");
+    PRETO("preto", "risco de overdose");
 
     private final String classificacao;
     private final String value;
