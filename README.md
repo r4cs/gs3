@@ -2,13 +2,18 @@
 Entrega Global Solution 3 - Enterprise App Development.
 
 Alunos:
+
 RM 96553 - Felipe Sendai
+
 RM 96542 - Gustavo Ballogh
+
 RM 97041 - Johann Marzolla
+
 RM 97306 - Lau Costa
+
 RM 97373 - Raquel Calmon
 
-[GitHub: Vai dar ruim? ](https://github.com/r4cs/gs3)
+### [GitHub: Vai dar ruim? ](https://github.com/r4cs/gs3)
 
 ### Maneira como se propõe a solucionar:
 
