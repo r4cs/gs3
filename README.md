@@ -15,7 +15,9 @@
 
 ### Links:
 
-#### [YouTube: overview e run do programa](https://youtu.be/Uuv8DtVKTiE)
+#### [YouTube: overview e run do programa com front swagger](https://youtu.be/Uuv8DtVKTiE)
+
+#### [YouTube: programa rodando com front react](https://youtu.be/EfcDWPe-8i8)
 
 #### [YouTube: pitch](https://youtu.be/L305bpp6nI8)
 
