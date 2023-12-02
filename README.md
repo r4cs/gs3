@@ -1,21 +1,27 @@
-# cp3_enterprise
-Entrega Global Solution 3 - Enterprise App Development.
+# GS3 
+## Entrega Global Solution 3 - Digital - Prof. Felipe Cabrini
 
-Alunos:
+### Alunos:
 
-RM 96553 - Felipe Sendai
+#### RM 96553 - Felipe Sendai
 
-RM 96542 - Gustavo Ballogh
+#### RM 96542 - Gustavo Ballogh
 
-RM 97041 - Johann Marzolla
+#### RM 97041 - Johann Marzolla
 
-RM 97306 - Lau Costa
+#### RM 97306 - Lau Costa
 
-RM 97373 - Raquel Calmon
+#### RM 97373 - Raquel Calmon
 
-### [GitHub: Vai dar ruim? ](https://github.com/r4cs/gs3)
+### Links:
 
-### Maneira como se propõe a solucionar:
+#### [YouTube: overview e run do programa](https://youtu.be/Uuv8DtVKTiE)
+
+#### [YouTube: pitch](https://youtu.be/L305bpp6nI8)
+
+#### [GitHub: Vai dar ruim? ](https://github.com/r4cs/gs3)
+
+## Maneira como se propõe a solucionar:
 
 O projeto VaiDaRuim propõe abordar a conscientização sobre os riscos associados às misturas de substâncias por meio de uma plataforma que fornece informações detalhadas sobre as interações entre diferentes medicamentos e drogas recreativas. A solução inclui:
 
@@ -46,11 +52,11 @@ O projeto VaiDaRuim propõe abordar a conscientização sobre os riscos associad
 * [application.properties.xml](src%2Fmain%2Fresources%2Fapplication.properties):
   * Determinar em spring.jpa.hibernate.ddl-auto desejado
   * Inlcuir usuario e senha
-* Rodar [FarmacoController.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Fvaidaruim%2Fgs3%2FapiController%2FFarmacoController.java)
+* Rodar [Gs3Application.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Fvaidaruim%2Fgs3%2FGs3Application.java)
 * Acesse http://localhost:8080/swagger-ui/index.html
 * Ex de jsons para insert:
   * {
-    "nomeDaSubstancia":"Maconha",
+    "nomeDaSubstancia":"MACONHA",
     "cruzamentos":{
     "MACONHA":"AZUL",
     "LSD":"VERDE",
