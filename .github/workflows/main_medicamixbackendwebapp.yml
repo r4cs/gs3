@@ -27,7 +27,7 @@ jobs:
           java-version: '17'
 
       - name: Build with Gradle
-        run: ./gradlew build --scan
+        run: ./gradlew build --scan --warning-mode all
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
