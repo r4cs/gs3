@@ -1,7 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: 
-https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy JAR app to Azure Web App - medicaMixBackendWebApp
 
 on:
@@ -22,7 +18,6 @@ jobs:
         with:
           java-version: '17'
 
-      # Assuming you have a 'build.gradle' file in your repository
       - name: Build with Gradle
         run: ./gradlew build
 
@@ -30,13 +25,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/build/libs/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
       
     steps:
@@ -50,9 +45,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'medicaMixBackendWebApp'
-          slot-name: 'production'
+          slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ 
-secrets.AzureAppService_PublishProfile_06b7d631ba3141f995fd44ce8a3ce450 
-}}
-
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A773A4F8C3CC42CFA4318180D78741D4 }}
