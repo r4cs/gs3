@@ -46,7 +46,8 @@ jobs:
 
       - name: Debug information before artifact upload
         run: |
-          echo "List files before artifact upload: $(ls -al ${GITHUB_WORKSPACE}/target)"
+          echo "List files before artifact upload: $(ls -al ${GITHUB_WORKSPACE}/build/libs/)"
+#          echo "List files before artifact upload: $(ls -al ${GITHUB_WORKSPACE}/target)"
 
 
   deploy:
