@@ -43,6 +43,11 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
+      - name: Debug information before artifact upload
+        run: |
+          echo "List files before artifact upload: $(ls -al ${GITHUB_WORKSPACE}/target)"
+
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
