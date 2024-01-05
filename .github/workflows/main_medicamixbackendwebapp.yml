@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate Gradle tasks
+        run: ./gradlew tasks --all || exit 1
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -27,7 +30,12 @@ jobs:
           java-version: '17'
 
       - name: Build with Gradle
-        run: ./gradlew build -x test --scan --warning-mode all
+        run: ./gradlew build -x test --scan --warning-mode all || exit 1
+
+      - name: Debug information after build
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "List files: $(ls -al)"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -41,13 +49,13 @@ jobs:
     environment:
       name: 'Staging'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: java-app
-      
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
