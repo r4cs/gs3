@@ -16,9 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate Gradle tasks
-        run: ./gradlew tasks --all || exit 1
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -28,6 +25,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
+
+      - name: Validate Gradle tasks
+        run: ./gradlew tasks --all || exit 1
 
       - name: Build with Gradle
         run: ./gradlew build -x test --scan --warning-mode all || exit 1
