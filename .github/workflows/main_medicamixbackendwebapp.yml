@@ -68,6 +68,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'medicaMixBackendWebApp'
-          slot-name: 'Staging'
+          slot-name: 'null'
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4367859936434DA4BEB7E987046F16A5 }}
