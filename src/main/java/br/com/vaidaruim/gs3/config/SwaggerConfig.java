@@ -13,7 +13,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI geraDocumentacao() {
         Server devServer = new Server();
-        devServer.setUrl("https://medicamixbackendwebapp.azurewebsites.net/");
+        devServer.setUrl("https://medicamixbackendwebapp.azurewebsites.net");
 //        devServer.setUrl("http://localhost:8080/api/farmacos");
         devServer.description("Url de desenvolvimento azure");
 
