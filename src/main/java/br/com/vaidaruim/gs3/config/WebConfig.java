@@ -14,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("https://snack-web-player.s3.us-west-1.amazonaws.com")
                 .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net/")
+                .allowedOrigins("https://medicamixbackendwebapp-apim.azure-api.net/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true)
