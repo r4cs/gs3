@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("https://snack-web-player.s3.us-west-1.amazonaws.com")
-                .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net")
+                .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true)
