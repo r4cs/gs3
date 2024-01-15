@@ -9,15 +9,31 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("https://snack-web-player.s3.us-west-1.amazonaws.com")
-                .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net/")
-                .allowedOrigins("https://medicamixbackendwebapp-apim.azure-api.net/")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*")
-                .allowCredentials(true)
-                .maxAge(3600);
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("https://snack-web-player.s3.us-west-1.amazonaws.com")
+//                .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net/")
+//                .allowedOrigins("https://medicamixbackendwebapp-apim.azure-api.net/")
+//                .allowedMethods("GET", "POST", "PUT", "DELETE")
+//                .allowedHeaders("*")
+//                .allowCredentials(true)
+//                .maxAge(3600);
+//    }
+@Override
+public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**")
+            .allowedOrigins("https://snack-web-player.s3.us-west-1.amazonaws.com");
+
+    registry.addMapping("/**")
+            .allowedOrigins("https://medicamixbackendwebapp.azurewebsites.net/");
+
+    registry.addMapping("/**")
+            .allowedOrigins("https://medicamixbackendwebapp-apim.azure-api.net/")
+            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedHeaders("*")
+            .allowCredentials(true)
+            .maxAge(3600);
+}
+
 }
