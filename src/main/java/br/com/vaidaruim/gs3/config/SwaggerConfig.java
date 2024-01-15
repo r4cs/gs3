@@ -14,6 +14,7 @@ public class SwaggerConfig {
     public OpenAPI geraDocumentacao() {
         Server devServer = new Server();
         devServer.setUrl("https://medicamixbackendwebapp.azurewebsites.net/");
+        devServer.setUrl("https://medicamixbackendwebapp.azurewebsites.net/api/farmacos");
         devServer.setUrl("https://medicamixbackendwebapp.azurewebsites.net/swagger-ui/index.html");
 //        devServer.setUrl("http://localhost:8080/api/farmacos"); ---> localmente, está setado assim, esse link específico retorna whitelabel (desconsiderar esse erro)
         devServer.description("Url de desenvolvimento azure");
